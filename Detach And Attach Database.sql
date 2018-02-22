@@ -41,6 +41,7 @@ EXEC master.dbo.sp_detch_db @dbname = 'DATABASE_NAME';
 --EG:
 EXEC master.dbo.sp_detach_db @dbname = 'LOAD_EXCEL_FILE';
 
+--This Process will detach the database no delete the log file(.ldf) from the server. And continue the process of attachment.
 
 
 --------------******ATTACH PROCESS
