@@ -41,7 +41,9 @@ EXEC master.dbo.sp_detch_db @dbname = 'DATABASE_NAME';
 --EG:
 EXEC master.dbo.sp_detach_db @dbname = 'BANKSMART';
 
---This Process will detach the database no delete the log file(.ldf) from the server. And continue the process of attachment.
+--This Process will detach the database now rename the log file(.ldf) . 
+--And continue the process of attachment new log file will be created automatically if only (.mdf) file is attached.
+--After the attachment delete the renamed log(.ldf) file.
 
 
 --------------******ATTACH PROCESS
