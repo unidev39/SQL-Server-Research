@@ -1,0 +1,18 @@
+1. Press the “Windows-R” key combination to open the “Run” window.
+
+2. Type “cmd” (without the quotes) in the Open text entry box and click the “OK” button.
+
+3. Enter the command: “FOR /L %i IN (1, 1, 254) DO ping -a -n 1 192.168.1.%i | FIND /i “Reply”>> c:\ipaddresses.txt”.
+
+4. Press “Enter.” This command takes several minutes to process and writes the results to a file named “ipaddresses.txt” 
+in the the root directory of the “C:” drive. You can view this file with Notepad. 
+All assigned addresses have the notation “bytes=32 time=xx TTL=128” and addresses without this message are available.
+
+Tip
+Substitute “192.168.1.” in the command string with your local network ID. 
+The numbers in parentheses, in order, indicate the starting segment address, the increment value and the ending address segment.
+
+Warning
+Access to the root of the “C:\” drive is restricted by default with versions of Windows newer than Windows XP. 
+If you are using Windows Vista or Windows7, create a new directory before running this command and change the destination to 
+“c:\mydirectory\ipaddresses.txt.”
