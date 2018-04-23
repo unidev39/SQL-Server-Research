@@ -14,3 +14,8 @@ DBCC SHRINKFILE(EightSquare_log,10);
 EG: EXEC sp_RENAME 'RiskFactor.RiskFactorId', 'RiskFactorCategoryId', 'COLUMN'
 
 ---------------************ Change Column Name **********---------------------
+
+
+-------------Find the Table Hierarchy 
+
+EXEC sp_msdependencies @intrans = 1 ,@objtype=3
