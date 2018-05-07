@@ -42,10 +42,7 @@ WHERE TABLE_NAME = 'CustomerHistory' AND COLUMN_NAME NOT IN ( 'Id','UserId','Ref
 ALTER TABLE #Result ADD OldValue VARCHAR(MAX), NewValue VARCHAR(MAX) 
 
 DECLARE @ColumnName VARCHAR(255),
-        @SQLSelect VARCHAR(MAX),
-        @SQLCreate VARCHAR(MAX),
-        @SQLInsert VARCHAR(MAX),
-        @SQLUpdate VARCHAR(MAX);
+        @SQLSelect VARCHAR(MAX);
 DECLARE dbCursor CURSOR FOR SELECT COLUMN_NAME FROM #Result; 
 
 OPEN dbCursor;
@@ -63,7 +60,7 @@ BEGIN
                                c.' + @ColumnName + ' AS New'+@ColumnName + '
                             FROM Customer c 
                             JOIN CustomerHistory ch on c.UserId = ch.UserId 
-                            WHERE c.UserId = ''' + CAST(@UserId AS NVARCHAR(36)) +'''ORDER BY ch.Id desc');
+                            WHERE c.UserId = ''' + CAST(@UserId AS NVARCHAR(36)) +'''ORDER BY ch.Id DESC');
               
      CREATE TABLE #TempResult (ColumnsName varchar(max) NULL,NewValue varchar(max), OldValue varchar(max));
      INSERT INTO #TempResult EXEC (@SQLSelect);
