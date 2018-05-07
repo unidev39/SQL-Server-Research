@@ -72,6 +72,7 @@ BEGIN
      SET  R.COLUMN_NAME = CASE WHEN ISNULL(TR.NewValue,'') = ISNULL(TR.OldValue,'') THEN NULL 
 						       WHEN RIGHT(@ColumnName,2) = 'Id' THEN SUBSTRING(@ColumnName,1,(len(@ColumnName)-2))						   
 	                      ELSE R.COLUMN_NAME END,
+						  
      	  R.NewValue = CASE WHEN @ColumnName = 'CustomerStatus'      THEN ISNULL((SELECT Status FROM CustomerStatus WHERE Id = TR.NewValue ),'N/A')     	                        						
      						WHEN @ColumnName = 'OccupationId'        THEN ISNULL((SELECT CodeDescription FROM Occupation WHERE Id = TR.NewValue ),'N/A')
      						WHEN @ColumnName = 'ResidentialStatusId' THEN CASE WHEN TR.NewValue = 1 THEN 'Non-Malaysian' ELSE 'Malaysian' END
@@ -81,7 +82,7 @@ BEGIN
 							WHEN @ColumnName = 'KYCType'             THEN CASE WHEN TR.NewValue = 0 THEN 'NONKYC' WHEN TR.NewValue = 1 THEN 'KYC' ELSE 'EKYC' END
 							WHEN @ColumnName IN ( 'NationalityId', 'CountryOfBirthId', 'PaymentCountryId') THEN ISNULL((SELECT CountryName FROM Country WHERE Id = TR.NewValue ),'N/A')							
      	               ELSE  ISNULL(TR.NewValue, 'N/A') END, 
-					       
+					   
      	  R.OldValue = CASE WHEN @ColumnName = 'CustomerStatus'      THEN ISNULL((SELECT Status FROM CustomerStatus WHERE Id = TR.OldValue ), 'N/A')     						
      						WHEN @ColumnName = 'OccupationId'        THEN ISNULL((SELECT CodeDescription FROM Occupation WHERE Id = TR.OldValue ), 'N/A')
      						WHEN @ColumnName = 'ResidentialStatusId' THEN CASE WHEN TR.OldValue = 1 THEN 'Non-Malaysian' ELSE 'Malaysian' END 							
@@ -94,11 +95,12 @@ BEGIN
      FROM 
           #Result R
      JOIN #TempResult TR ON R.COLUMN_NAME = TR.ColumnsName;
-
 END;               
        FETCH NEXT FROM dbCursor INTO @ColumnName;	   
 END;
 CLOSE dbCursor;
 DEALLOCATE dbCursor;
 SELECT * FROM #Result WHERE COLUMN_NAME is not null;
+DROP TABLE #Result;
+DROP TABLE #TempResult;
 END;
