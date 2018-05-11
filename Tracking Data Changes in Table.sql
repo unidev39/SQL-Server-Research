@@ -2,6 +2,7 @@
 -- Trigger to Track the data changes of the tables and maintaining the changed data in another table.
 
 --First Create table Audit to store the changed data values.
+--Database (Eremitv3) EightSquare
 
 CREATE TABLE [dbo].[Audit](
 	[AuditID] [int] IDENTITY(1,1) NOT FOR REPLICATION NOT NULL,
