@@ -19,3 +19,12 @@ EG: EXEC sp_RENAME 'RiskFactor.RiskFactorId', 'RiskFactorCategoryId', 'COLUMN'
 -------------Find the Table Hierarchy 
 
 EXEC sp_msdependencies @intrans = 1 ,@objtype=3
+
+
+
+---------Check the port listening by sql server instance
+
+USE MASTER
+GO
+xp_readerrorlog 0, 1, N'Server is listening on'
+GO
