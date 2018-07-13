@@ -1,4 +1,4 @@
-SELECT SCHEMA_NAME(schema_id) AS [SchemaName],
+SELECT 
 [Tables].name AS [TableName],
 SUM([Partitions].[rows]) AS [TotalRowCount]
 FROM sys.tables AS [Tables]
