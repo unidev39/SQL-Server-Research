@@ -42,12 +42,12 @@ BEGIN
 		   BEGIN 
 		        IF (@FRAGMENT_PERCENT <= '30' ) 
 				   BEGIN 
-		               SET @TSQL = ('ALTER INDEX '+@INDEX_NAME+' ON dbo.'+@INDEX_TABLE+''+CHAR(13)+' REORGANIZE')
+		               SET @TSQL = ('ALTER INDEX  ['+@INDEX_NAME+'] ON dbo.['+@INDEX_TABLE+']'+CHAR(13)+' REORGANIZE')
 				       --PRINT (@TSQL);
-					   EXEC (@TSQL);
+				       EXEC (@TSQL);
 				   END;
                 ELSE 
-				    SET @TSQL = ('ALTER INDEX '+@INDEX_NAME+' ON dbo.'+@INDEX_TABLE+''+CHAR(13)+' REBUILD');
+				    SET @TSQL = ('ALTER INDEX  ['+@INDEX_NAME+']  ON dbo.['+@INDEX_TABLE+']'+CHAR(13)+' REBUILD');
 					--PRINT (@TSQL);
 					EXEC (@TSQL);
            
