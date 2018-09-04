@@ -1,4 +1,4 @@
-ALTER PROCEDURE [dbo].[DropIndexes] 
+CREATE PROCEDURE [dbo].[DropIndexesStatistics] 
   @SchemaName NVARCHAR(255) = 'dbo', @TableName NVARCHAR(255) = NULL AS
 BEGIN
 SET NOCOUNT ON
