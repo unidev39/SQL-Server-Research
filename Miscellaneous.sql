@@ -28,3 +28,21 @@ USE MASTER
 GO
 xp_readerrorlog 0, 1, N'Server is listening on'
 GO
+
+
+-----------------------Procedure Execution Details----------------------------
+--Execution count / Last Execution time / Cached Time / Plan Handle
+
+
+SELECT 
+	DB_NAME(database_id) as  DatabaseName,
+	OBJECT_NAME(object_id) as ProcName,	
+	cp.plan_handle,
+	cached_time,
+	last_execution_time,
+    execution_count,
+	cp.refcounts	
+FROM sys.dm_exec_cached_plans AS cp 
+CROSS APPLY sys.dm_exec_sql_text(plan_handle) AS st 
+INNER JOIN sys.dm_exec_procedure_stats ps on ps.object_id = st.objectid
+WHERE OBJECT_NAME (st.objectid) = 'BO_GetTransactions'
