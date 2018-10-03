@@ -46,3 +46,22 @@ FROM sys.dm_exec_cached_plans AS cp
 CROSS APPLY sys.dm_exec_sql_text(plan_handle) AS st 
 INNER JOIN sys.dm_exec_procedure_stats ps on ps.object_id = st.objectid
 WHERE OBJECT_NAME (st.objectid) = 'BO_GetTransactions'
+
+
+---------------------------------------  XML PATH
+
+SELECT ',' + cast(AgentId as varchar(10))
+              FROM Agent where ParentAgentId is not null
+              FOR XML PATH ('')
+
+
+----------------------------------------  STUFF 
+
+SELECT top 1 BranchId = STUFF((
+            SELECT ',' + CAST(AgentId as varchar(10))
+            FROM Agent where ParentAgentId is not null
+            FOR XML PATH('')
+            ), 1, 1, '')
+FROM Agent
+
+
