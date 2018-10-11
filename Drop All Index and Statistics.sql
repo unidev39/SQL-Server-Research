@@ -16,7 +16,7 @@ AND s.name = COALESCE(@SchemaName, s.name)
 AND t.name = COALESCE(@TableName, t.name);
 
 INSERT INTO #commands (Command)
-SELECT 'DROP STATISTICS ' + SCHEMA_NAME(t.schema_id) + '.'  + OBJECT_NAME(s.object_id) + '.' + s.name
+SELECT 'DROP STATISTICS ' + SCHEMA_NAME(t.schema_id) + '.['  + OBJECT_NAME(s.object_id) + '].' + s.name
 FROM sys.stats AS s
 JOIN sys.tables AS t
 ON s.object_id = t.object_id
