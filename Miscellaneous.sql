@@ -1,3 +1,11 @@
+--Unlock user of DB
+Syntax: ALTER LOGIN [Mary5] WITH PASSWORD = '****' UNLOCK ;  
+
+Example: ALTER LOGIN sa_db WITH PASSWORD = 'U@tdbMM/>!@#' UNLOCK ; 
+
+
+
+
 Shrink Log file size of SQL SERVER 
 
 Syntax:
