@@ -1,5 +1,5 @@
 --Unlock user of DB
-Syntax: ALTER LOGIN [Mary5] WITH PASSWORD = '****' UNLOCK ;  
+Syntax: ALTER LOGIN [UserNAme] WITH PASSWORD = '****' UNLOCK ;  
 
 Example: ALTER LOGIN sa_db WITH PASSWORD = 'U@tdbMM/>!@#' UNLOCK ; 
 
