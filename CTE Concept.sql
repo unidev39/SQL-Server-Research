@@ -74,3 +74,31 @@ union all
 select COUNT(*) as RecCount, 'Total' as Total    from CTE;
 
 END;
+
+
+----Using Union all with  two or more CTE
+
+With Clients As
+        (
+        Select Client_No
+        From dbo.Decision_Data
+        Group By Client_No
+        Having Count(*) = 1
+        )
+        , CTE2FromClients As
+        (
+        Select Client_No
+        From Clients
+        )
+    Select Count(*)
+    From Decision_Data
+    Union
+    Select Count(Distinct Client_No)
+    From dbo.Decision_Data
+    Union
+    Select Count(*)
+    From Clients
+    Union
+    Select Count(*)
+    From CTE2FromClients;
+
