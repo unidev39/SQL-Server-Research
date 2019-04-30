@@ -1,3 +1,20 @@
+The xp_cmdshell option is a SQL Server server configuration option that enables system administrators 
+to control whether the xp_cmdshell extended stored procedure can be executed on a system. 
+By default, the xp_cmdshell option is disabled on new installations.
+
+-- To allow advanced options to be changed.  
+EXEC sp_configure 'show advanced options', 1;  
+GO  
+-- To update the currently configured value for advanced options.  
+RECONFIGURE;  
+GO  
+-- To enable the feature.  
+EXEC sp_configure 'xp_cmdshell', 1;  
+GO  
+-- To update the currently configured value for this feature.  
+RECONFIGURE;  
+GO  
+
 declare @svrName varchar(255)
 declare @sql varchar(400)
 --by default it will take the current server name, we can the set the server name as well
@@ -29,3 +46,21 @@ where line like '[A-Z][:]%'
 order by drivename
 --script to drop the temporary table
 drop table #output
+
+                           
+--Disable 
+                           
+ -- To allow advanced options to be changed.  
+EXEC sp_configure 'show advanced options', 0;  
+GO  
+-- To update the currently configured value for advanced options.  
+RECONFIGURE;  
+GO  
+-- To disable the feature.  
+EXEC sp_configure 'xp_cmdshell', 0;  
+GO  
+-- To update the currently configured value for this feature.  
+RECONFIGURE;  
+GO                           
+                           
+                           
