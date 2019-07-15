@@ -15,6 +15,21 @@ Eg:
 
 DBCC SHRINKFILE(EightSquare_log,10);
 
+Alternative/prefered way Shrink Log file size of SQL SERVER 
+USE [master]
+GO
+ALTER DATABASE [Deemoney] SET RECOVERY SIMPLE WITH NO_WAIT
+GO
+
+USE [Deemoney]
+GO
+DBCC SHRINKFILE (N'Deemoney_log' , 0, TRUNCATEONLY)
+GO
+
+USE [master]
+GO
+ALTER DATABASE [Deemoney] SET RECOVERY FULL WITH NO_WAIT
+GO
 
 ---------------************ Change Column Name **********---------------------
 
